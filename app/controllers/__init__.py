@@ -1,1 +1,1 @@
-from .currency_controller import currency_controller
+from .resources import currency_controller
