@@ -1,6 +1,6 @@
 from graphene import ObjectType, Field, List, Mutation, String, Boolean
 from google.protobuf.json_format import MessageToDict
-from .currency_connect import sender, stub
+from .currency_controller import sender, stub
 from ....types import Currency, CurrencyInput, CurrencyNotIdInput
 import grpc
 

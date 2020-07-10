@@ -1,1 +1,1 @@
-from .currencies.currency_controller import currency_controller
+from .currencies import CurrencyMutation, CurrencyQuery

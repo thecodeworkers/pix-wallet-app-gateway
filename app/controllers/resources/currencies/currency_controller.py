@@ -1,8 +1,5 @@
-from graphene import Schema
-from .currency_query import CurrencyQuery
-from .currency_mutation import CurrencyMutation
+from ...controller import GrpcConnect
 
-currency_controller = Schema(
-    query=CurrencyQuery, 
-    mutation=CurrencyMutation
-)
+currency_grpc = GrpcConnect('resources', 'currencies')
+sender = currency_grpc.sender
+stub = currency_grpc.stub
