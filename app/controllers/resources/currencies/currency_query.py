@@ -9,7 +9,7 @@ class CurrencyQuery(ObjectType):
     currency = Field(Currency, id=String(required=True))
 
     def resolve_currencies(root, info):
-        request = sender.Empty()
+        request = sender.CurrencyEmpty()
         response = stub.get_all(request)
         response = MessageToDict(response)
         

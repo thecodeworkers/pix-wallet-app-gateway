@@ -21,7 +21,7 @@ class CurrencyStub(object):
                 )
         self.get_all = channel.unary_unary(
                 '/Currency/get_all',
-                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.SerializeToString,
+                request_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.SerializeToString,
                 response_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
                 )
         self.get = channel.unary_unary(
@@ -95,7 +95,7 @@ def add_CurrencyServicer_to_server(servicer, server):
             ),
             'get_all': grpc.unary_unary_rpc_method_handler(
                     servicer.get_all,
-                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.Empty.FromString,
+                    request_deserializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.FromString,
                     response_serializer=app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
@@ -155,7 +155,7 @@ class Currency(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Currency/get_all',
-            app_dot_services_dot_currency_dot_currency__pb2.Empty.SerializeToString,
+            app_dot_services_dot_currency_dot_currency__pb2.CurrencyEmpty.SerializeToString,
             app_dot_services_dot_currency_dot_currency__pb2.CurrencyMultipleResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
