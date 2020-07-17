@@ -13,7 +13,10 @@ class CurrencyQuery(ObjectType):
         response = stub.get_all(request)
         response = MessageToDict(response)
         
-        return response['currency']
+        if 'currency' in response:
+            return response['currency']
+        
+        return response
 
     def resolve_currency(root, info, id):
         try:
@@ -21,7 +24,10 @@ class CurrencyQuery(ObjectType):
             response = stub.get(request)
             response = MessageToDict(response)
 
-            return response['currency']
+            if 'currency' in response:
+                return response['currency']
+        
+            return response
         
         except grpc.RpcError as e:
             raise Exception(e.details())

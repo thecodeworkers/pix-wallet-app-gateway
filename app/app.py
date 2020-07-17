@@ -1,7 +1,7 @@
 from flask import jsonify
 from .routes import graphql_routes
 from .bootstrap import app
-from .constants import HOST, PORT
+from .constants import HOST, PORT, DEBUG
 
 @app.route('/')
 def welcome():
@@ -14,4 +14,4 @@ def page_not_found(error):
 graphql_routes()
 
 def run_server():
-    app.run(host=HOST, port=PORT)
+    app.run(host=HOST, port=PORT, debug=DEBUG)
