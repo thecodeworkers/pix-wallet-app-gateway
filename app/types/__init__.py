@@ -1,2 +1,2 @@
 from .currency import Currency, CurrencyNotIdInput, CurrencyInput
-from .price import Price
+from .language import Language, LanguageNotIdInput, LanguageInput

@@ -1,16 +1,17 @@
 from flask_graphql import GraphQLView
 from graphene import Schema
 from ..bootstrap import app
-from ..controllers import  CurrencyQuery, CurrencyMutation, PriceQuery
+from ..controllers import  CurrencyQuery, CurrencyMutation, LanguageQuery, LanguageMutation
 
 class AllQuerys(
     CurrencyQuery,
-    PriceQuery
+    LanguageQuery
 ):
     pass
 
 class AllMutations(
-    CurrencyMutation
+    CurrencyMutation,
+    LanguageMutation
 ):
     pass
 
