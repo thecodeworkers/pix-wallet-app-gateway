@@ -7,8 +7,8 @@ class Language(ObjectType):
     active = Boolean()
 
 class LanguageNotIdInput(InputObjectType):
-    name = String()
-    prefix = String()
+    name = String(required=True)
+    prefix = String(required=True)
     active = Boolean()
 
 class LanguageInput(LanguageNotIdInput):

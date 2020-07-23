@@ -2,6 +2,7 @@ from graphene import ObjectType, Field, List, Mutation, String, Boolean
 from google.protobuf.json_format import MessageToDict
 from .currency_controller import sender, stub
 from ....types import Currency, CurrencyInput, CurrencyNotIdInput
+from ....utils import message_error
 import grpc
 
 class CreateCurrency(Mutation):
@@ -19,7 +20,7 @@ class CreateCurrency(Mutation):
             return CreateCurrency(**response)
 
         except grpc.RpcError as e:
-            raise Exception(e.details())
+            raise Exception(message_error(e))
 
 class UpdateCurrency(Mutation):
     class Arguments:
@@ -36,7 +37,7 @@ class UpdateCurrency(Mutation):
             return CreateCurrency(**response)
 
         except grpc.RpcError as e:
-            raise Exception(e.details())
+            raise Exception(message_error(e))
 
 class DeleteCurrency(Mutation):
     class Arguments:
@@ -47,12 +48,12 @@ class DeleteCurrency(Mutation):
     def mutate(self, info, id):
         try:
             request = sender.CurrencyIdRequest(id=id)
-            response = stub.delete(request)
-        
+            stub.delete(request)
+    
             return DeleteCurrency(ok=True)
 
         except grpc.RpcError as e:
-            raise Exception(e.details())
+            raise Exception(message_error(e))
 
 class CurrencyMutation(ObjectType):
     create_currency = CreateCurrency.Field()

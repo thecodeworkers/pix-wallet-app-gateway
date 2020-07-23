@@ -1,4 +1,5 @@
-from graphene import ObjectType, String, Float, Boolean, InputObjectType
+from graphene import ObjectType, String, Float, Boolean, InputObjectType, Int
+
 
 class Currency(ObjectType):
     id = String()
@@ -12,8 +13,8 @@ class Currency(ObjectType):
 class CurrencyNotIdInput(InputObjectType):
     name = String(required=True)
     color = String(required=True)
-    active = Boolean(required=True)
-    type = String(required=True)
+    active = Boolean()
+    type = Int(required=True)
     symbol = String(required=True)
     price = Float(required=True)
 
