@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  rabbit_server:
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+      - '15671:15671'
+    networks:
+      micro_net:
+        ipv4_address: 200.0.0.10
+  pix_wallet_gateway:
+    container_name: pix_wallet_gateway
+    build: ./pix-wallet-gateway
+    volumes:
+      - ./pix-wallet-gateway:/gateway
+    command: python run.py
+    restart: always
+    ports:
+      - '5000:5000'
+    networks:
+      micro_net:
+        ipv4_address: 200.0.0.20
+  db_providers:
+    image: mongo:4.2.8-bionic
+    ports:
+      - '27017:27017'
+    networks:
+      micro_net:
+        ipv4_address: 200.0.0.11
+  micro_providers:
+    container_name: micro_providers
+    build: ./providers-microservice
+    volumes:
+      - ./providers-microservice:/micro
+    command: python run.py
+    restart: always
+    ports:
+      - '50052:50052'
+    depends_on:
+      - db_providers
+      - rabbit_server
+    networks:
+      micro_net:
+        ipv4_address: 200.0.0.21
+  db_resources:
+    image: mongo:4.2.8-bionic
+    ports:
+      - '27018:27017'
+    networks:
+      micro_net:
+        ipv4_address: 200.0.0.12
+  micro_resources:
+    container_name: micro_resources
+    build: ./resources-microservice
+    volumes:
+      - ./resources-microservice:/micro
+    command: python run.py
+    restart: always
+    ports:
+      - '50051:50051'
+    depends_on:
+      - db_resources
+      - rabbit_server
+    networks:
+      micro_net:
+        ipv4_address: 200.0.0.22
+
+networks:
+  micro_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 200.0.0.1/24
