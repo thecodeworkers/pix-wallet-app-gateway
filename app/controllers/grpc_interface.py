@@ -1,8 +1,8 @@
 from ..protos import currency_pb2, currency_pb2_grpc, language_pb2, language_pb2_grpc
 from ..bootstrap import init_server
 
-resources_host = 'localhost:50051'
-providers_host = 'localhost:50052'
+resources_host = '200.0.0.22:50051'
+providers_host = '200.0.0.21:50052'
 
 microservices = {
     'resources': {
