@@ -10,11 +10,11 @@ services:
     networks:
       micro_net:
         ipv4_address: 200.0.0.10
-  pix_wallet_gateway:
-    container_name: pix_wallet_gateway
-    build: ./pix-wallet-gateway
+  pix_wallet_app_gateway:
+    container_name: pix_wallet_app_gateway
+    build: ./pix-wallet-app-gateway
     volumes:
-      - ./pix-wallet-gateway:/gateway
+      - ./pix-wallet-app-gateway:/gateway
     command: python run.py
     restart: always
     ports:
