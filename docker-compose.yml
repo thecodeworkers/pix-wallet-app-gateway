@@ -1,21 +1,48 @@
+#################################################################
+# DOCKER COMPOSE FILE PARA EJECUTAR UN CONJUNTO DE CONTENEDORES #
+# ESTE ARCHIVO ESPECIFICA LOS PUERTOS DE ESCUCHA, LOS VOLUMENES #
+# EL ARCHIVO DE CADA CONTENEDOR, SUS DEPENDENCIAS Y LA RED A LA #
+# QUE PERTENECE CADA CONTENEDOR.                                #
+#                                                               #
+# PARA CORRER EL ARCHIVO Y EJECUTAR SUS CONTENEDORES CORRER EL  #
+# COMANDO docker-compose up -d                                  #
+#                                                               #
+# PARA MAS INFORMACION VISITAR EL LINK                          #
+# https://docs.docker.com/compose/reference/up/                 #
+#                                                               #
+# DESARROLLADO POR: JORGE BASTIDAS, LISETH GUTIERREZ            #
+#################################################################
+
+#Definicion de la version de docker compose a utilizar - la version 3 es la ultima actualmente.
 version: '3'
 
+#Declaracion de los contenedores a ejecutar
 services:
+  #Declaracion de Contenedor
   rabbit_server:
+    #Declaracion de la imagen a utilizar en el contenedor
     image: rabbitmq:3.8-management-alpine
+    #Declaracion de mapeo de puertos para acceso local
+    #PUERTO 5672 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
       - '5672:5672'
       - '15672:15672'
       - '15671:15671'
+    #Declaracion de redes
     networks:
       micro_net:
+        #Declaracion de puerto de red
         ipv4_address: 200.0.0.10
   pix_wallet_app_gateway:
+    #Declarar nombre de contenedor
     container_name: pix_wallet_app_gateway
-    build: ./pix-wallet-app-gateway
+    #Declarar ruta de archivo dockerfile a construir
+    build: ./pix-wallet-gateway
+    #Declaracion de volumen de contenedor [Carpeta en equipo local]:[Carpeta de contenedor]
     volumes:
-      - ./pix-wallet-app-gateway:/gateway
-    command: python run.py
+      - ./pix-wallet-gateway:/project
+    #Ejecucion de comando al levantar contenedor
+    #Declaracion de ejecutar nuevamente el contenedor en caso de caida.
     restart: always
     ports:
       - '5000:5000'
@@ -24,6 +51,7 @@ services:
         ipv4_address: 200.0.0.20
   db_providers:
     image: mongo:4.2.8-bionic
+    #PUERTO 27017 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
       - '27017:27017'
     networks:
@@ -33,11 +61,12 @@ services:
     container_name: micro_providers
     build: ./providers-microservice
     volumes:
-      - ./providers-microservice:/micro
-    command: python run.py
+      - ./providers-microservice:/project
     restart: always
+    #PUERTO 50052 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
       - '50052:50052'
+    #Declaracion de dependencia de otros contenedores al contenedor declarado
     depends_on:
       - db_providers
       - rabbit_server
@@ -46,6 +75,7 @@ services:
         ipv4_address: 200.0.0.21
   db_resources:
     image: mongo:4.2.8-bionic
+    #PUERTO 27017 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
       - '27018:27017'
     networks:
@@ -55,9 +85,9 @@ services:
     container_name: micro_resources
     build: ./resources-microservice
     volumes:
-      - ./resources-microservice:/micro
-    command: python run.py
+      - ./resources-microservice:/project
     restart: always
+    #PUERTO 50051 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
       - '50051:50051'
     depends_on:
@@ -67,9 +97,15 @@ services:
       micro_net:
         ipv4_address: 200.0.0.22
 
+#Declaracion de virtualizacion de redes para contenedores
 networks:
+  #Declaracion del nombre de la red a virtualizar
   micro_net:
+    #Declaracion del driver de red a utilizar
     driver: bridge
+    #Declaracion de opciones de la red
     ipam:
+      #Declaracaion de configuracion de la red
       config:
+        #Declaracion de segmento de red utilizada por la red
         - subnet: 200.0.0.1/24
