@@ -1,1 +1,1 @@
-from .resources import CurrencyQuery, CurrencyMutation, LanguageQuery, LanguageMutation
+from .resources import CurrencyQuery, LanguageQuery
