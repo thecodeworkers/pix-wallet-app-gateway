@@ -7,6 +7,10 @@
 # PARA CORRER EL ARCHIVO Y EJECUTAR SUS CONTENEDORES CORRER EL  #
 # COMANDO docker-compose up -d                                  #
 #                                                               #
+# NOTA IMPORTANTE: ESTE ARCHIVO DEBE ESTAR EN LA CARPETA RAIZ   #
+# DONDE SE ENCUENTREN LOS PROYECTOS PIX-WALLET-APP-GATEWAY      #
+# RESOURCES-MICROSERVICES Y PROVIDERS-MICROSERVICES             #
+#                                                               #
 # PARA MAS INFORMACION VISITAR EL LINK                          #
 # https://docs.docker.com/compose/reference/up/                 #
 #                                                               #
