@@ -41,10 +41,10 @@ services:
     #Declarar nombre de contenedor
     container_name: pix_wallet_app_gateway
     #Declarar ruta de archivo dockerfile a construir
-    build: ./pix-wallet-gateway
+    build: ./pix-wallet-app-gateway
     #Declaracion de volumen de contenedor [Carpeta en equipo local]:[Carpeta de contenedor]
     volumes:
-      - ./pix-wallet-gateway:/project
+      - ./pix-wallet-app-gateway:/project
     #Ejecucion de comando al levantar contenedor
     #Declaracion de ejecutar nuevamente el contenedor en caso de caida.
     restart: always
