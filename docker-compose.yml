@@ -24,6 +24,7 @@ version: '3'
 services:
   #Declaracion de Contenedor
   rabbit_server:
+    container_name: rabbitmq
     #Declaracion de la imagen a utilizar en el contenedor
     image: rabbitmq:3.8-management-alpine
     #Declaracion de mapeo de puertos para acceso local
@@ -54,6 +55,7 @@ services:
       micro_net:
         ipv4_address: 200.0.0.20
   db_providers:
+    container_name: db_providers
     image: mongo:4.2.8-bionic
     #PUERTO 27017 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
@@ -78,6 +80,7 @@ services:
       micro_net:
         ipv4_address: 200.0.0.21
   db_resources:
+    container_name: db_resources
     image: mongo:4.2.8-bionic
     #PUERTO 27017 EXPUESTO SOLO PARA DESARROLLO / NO DEBE SER EXPUESTO EN PRODUCCION
     ports:
