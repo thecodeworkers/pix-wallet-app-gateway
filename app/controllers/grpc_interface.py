@@ -3,6 +3,7 @@ from ..bootstrap import init_server
 
 resources_host = 'localhost:50051'
 providers_host = 'localhost:50052'
+american_banks_host = 'localhost:50053'
 
 microservices = {
     'resources': {
@@ -10,14 +11,10 @@ microservices = {
             'currencies': {
                 'stub': currency_pb2_grpc.CurrencyStub(init_server(resources_host)),
                 'sender': currency_pb2
-            }
-        }
-    },
-    'providers': {
-        'services': {
-            'prices': {
-                'stub': price_pb2_grpc.PriceStub(init_server(providers_host)),
-                'sender': price_pb2
+            },
+            'languages': {
+                'stub': language_pb2_grpc.LanguageStub(init_server(resources_host)),
+                'sender': language_pb2
             }
         }
     },

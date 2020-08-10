@@ -1,22 +1,22 @@
 from graphene import ObjectType, Field, List, String
 from google.protobuf.json_format import MessageToDict
-from .currency_controller import sender, stub
-from ....types import Currency
+from .american_banks_controller import sender, stub
+from ....types import Banks
 from ....utils import message_error
 import grpc
 
-class CurrencyQuery(ObjectType):
-    currencies = List(Currency)
-    currency = Field(Currency, id=String(required=True))
+class AmericanBanksQuery(ObjectType):
+    american_banks = List(Banks)
+    american_banks = Field(Banks, id=String(required=True))
 
     def resolve_currencies(root, info):
         try:
-            request = sender.CurrencyEmpty()
+            request = sender.AmericanBankEmpty()
             response = stub.get_all(request)
             response = MessageToDict(response)
             
-            if 'currency' in response:
-                return response['currency']
+            if 'american_banks' in response:
+                return response['american_banks']
             
             return response
         
@@ -25,12 +25,12 @@ class CurrencyQuery(ObjectType):
 
     def resolve_currency(root, info, id):
         try:
-            request = sender.CurrencyIdRequest(id=id)
+            request = sender.AmericanBankIdRequest(id=id)
             response = stub.get(request)
             response = MessageToDict(response)
 
-            if 'currency' in response:
-                return response['currency']
+            if 'american_banks' in response:
+                return response['american_banks']
         
             return response
         

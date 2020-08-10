@@ -1,1 +1,2 @@
-from .currencies import CurrencyMutation, CurrencyQuery
+from .currencies import CurrencyQuery
+from .languages import LanguageQuery

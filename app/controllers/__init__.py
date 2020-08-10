@@ -1,2 +1,2 @@
-from .resources import CurrencyQuery, CurrencyMutation
-from .providers import PriceQuery
+from .resources import CurrencyQuery, LanguageQuery
+from .american_banks import AmericanBanksQuery
