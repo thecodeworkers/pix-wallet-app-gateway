@@ -1,4 +1,4 @@
-from ..protos import currency_pb2, currency_pb2_grpc, price_pb2, price_pb2_grpc
+from ..protos import currency_pb2, currency_pb2_grpc, price_pb2, price_pb2_grpc, american_banks_pb2, american_banks_pb2_grpc
 from ..bootstrap import init_server
 
 resources_host = 'localhost:50051'
@@ -18,6 +18,15 @@ microservices = {
             'prices': {
                 'stub': price_pb2_grpc.PriceStub(init_server(providers_host)),
                 'sender': price_pb2
+            }
+        }
+    },
+
+    'banks': {
+        'services': {
+            'american-banks': {
+                'stub': american_banks_pb2_grpc.AmericanBanksStub(init_server(american_banks_host)),
+                'sender': american_banks_pb2
             }
         }
     }
