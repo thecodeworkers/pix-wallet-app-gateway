@@ -1,4 +1,4 @@
-from ..protos import currency_pb2, currency_pb2_grpc, price_pb2, price_pb2_grpc, american_banks_pb2, american_banks_pb2_grpc
+from ..protos import currency_pb2, currency_pb2_grpc, american_banks_pb2, american_banks_pb2_grpc, language_pb2_grpc, language_pb2
 from ..bootstrap import init_server
 
 resources_host = 'localhost:50051'

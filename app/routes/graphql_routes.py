@@ -24,4 +24,3 @@ schema = Schema(
 
 def graphql_routes():
     app.add_url_rule('/graphql/', view_func=GraphQLView.as_view('resources', schema=schema, graphiql=True))
-    app.add_url_rule('/graphql/', view_func=GraphQLView.as_view('banks', schema=schema, graphiql=True))
