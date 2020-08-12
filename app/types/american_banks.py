@@ -6,7 +6,9 @@ class AmericanBanks(ObjectType):
     bankName = String()
     fullName = String()
     swift = String()
+    ach = String()
     numberAccount = String()
     type = String()
+    documentIdentification = String()
     currency = String()
  

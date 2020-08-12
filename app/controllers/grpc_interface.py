@@ -21,7 +21,7 @@ microservices = {
 
     'banks': {
         'services': {
-            'american-banks': {
+            'american_banks': {
                 'stub': american_banks_pb2_grpc.AmericanBanksStub(init_server(american_banks_host)),
                 'sender': american_banks_pb2
             }
