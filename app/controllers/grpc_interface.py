@@ -4,6 +4,8 @@ from ..bootstrap import init_server
 resources_host = 'localhost:50051'
 providers_host = 'localhost:50052'
 american_banks_host = 'localhost:50053'
+resources_host = 'micro_resources:50051'
+providers_host = 'micro_providers:50052'
 
 microservices = {
     'resources': {
