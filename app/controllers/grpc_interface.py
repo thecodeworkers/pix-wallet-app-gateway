@@ -1,8 +1,9 @@
 from ..protos import currency_pb2, currency_pb2_grpc, language_pb2, language_pb2_grpc
 from ..bootstrap import init_server
+from ..constants import RESOURCES_HOST, PROVIDERS_HOST
 
-resources_host = 'micro_resources:50051'
-providers_host = 'micro_providers:50052'
+resources_host = RESOURCES_HOST
+providers_host = PROVIDERS_HOST
 
 microservices = {
     'resources': {
