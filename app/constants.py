@@ -18,3 +18,4 @@ ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
 
 RESOURCES_HOST = os.getenv('RESOURCES_HOST', 'localhost:50051')
 PROVIDERS_HOST = os.getenv('RESOURCES_HOST', 'localhost:50052')
+COUNTRIES_HOST = os.getenv('COUNTRIES_HOST', 'localhost:50053')

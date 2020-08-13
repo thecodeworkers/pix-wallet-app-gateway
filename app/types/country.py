@@ -5,3 +5,4 @@ class Country(ObjectType):
     name = String()
     phone_prefix = String()
     active = Boolean()
+    states = String()
