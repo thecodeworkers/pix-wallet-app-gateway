@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from app.protos import country_pb2 as country__pb2
+from . import state_pb2 as state__pb2
 
 
-class CountryStub(object):
+class StateStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,38 +15,38 @@ class CountryStub(object):
             channel: A grpc.Channel.
         """
         self.table = channel.unary_unary(
-                '/country.Country/table',
-                request_serializer=country__pb2.CountryTableRequest.SerializeToString,
-                response_deserializer=country__pb2.CountryTableResponse.FromString,
+                '/State/table',
+                request_serializer=state__pb2.StateTableRequest.SerializeToString,
+                response_deserializer=state__pb2.StateTableResponse.FromString,
                 )
         self.get_all = channel.unary_unary(
-                '/country.Country/get_all',
-                request_serializer=country__pb2.CountryEmpty.SerializeToString,
-                response_deserializer=country__pb2.CountryMultipleResponse.FromString,
+                '/State/get_all',
+                request_serializer=state__pb2.StateEmpty.SerializeToString,
+                response_deserializer=state__pb2.StateMultipleResponse.FromString,
                 )
         self.get = channel.unary_unary(
-                '/country.Country/get',
-                request_serializer=country__pb2.CountryIdRequest.SerializeToString,
-                response_deserializer=country__pb2.CountryResponse.FromString,
+                '/State/get',
+                request_serializer=state__pb2.StateIdRequest.SerializeToString,
+                response_deserializer=state__pb2.StateResponse.FromString,
                 )
         self.save = channel.unary_unary(
-                '/country.Country/save',
-                request_serializer=country__pb2.CountryNotIdRequest.SerializeToString,
-                response_deserializer=country__pb2.CountryResponse.FromString,
+                '/State/save',
+                request_serializer=state__pb2.StateNotIdRequest.SerializeToString,
+                response_deserializer=state__pb2.StateResponse.FromString,
                 )
         self.update = channel.unary_unary(
-                '/country.Country/update',
-                request_serializer=country__pb2.CountryRequest.SerializeToString,
-                response_deserializer=country__pb2.CountryResponse.FromString,
+                '/State/update',
+                request_serializer=state__pb2.StateRequest.SerializeToString,
+                response_deserializer=state__pb2.StateResponse.FromString,
                 )
         self.delete = channel.unary_unary(
-                '/country.Country/delete',
-                request_serializer=country__pb2.CountryIdRequest.SerializeToString,
-                response_deserializer=country__pb2.CountryEmpty.FromString,
+                '/State/delete',
+                request_serializer=state__pb2.StateIdRequest.SerializeToString,
+                response_deserializer=state__pb2.StateEmpty.FromString,
                 )
 
 
-class CountryServicer(object):
+class StateServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def table(self, request, context):
@@ -86,46 +86,46 @@ class CountryServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_CountryServicer_to_server(servicer, server):
+def add_StateServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'table': grpc.unary_unary_rpc_method_handler(
                     servicer.table,
-                    request_deserializer=country__pb2.CountryTableRequest.FromString,
-                    response_serializer=country__pb2.CountryTableResponse.SerializeToString,
+                    request_deserializer=state__pb2.StateTableRequest.FromString,
+                    response_serializer=state__pb2.StateTableResponse.SerializeToString,
             ),
             'get_all': grpc.unary_unary_rpc_method_handler(
                     servicer.get_all,
-                    request_deserializer=country__pb2.CountryEmpty.FromString,
-                    response_serializer=country__pb2.CountryMultipleResponse.SerializeToString,
+                    request_deserializer=state__pb2.StateEmpty.FromString,
+                    response_serializer=state__pb2.StateMultipleResponse.SerializeToString,
             ),
             'get': grpc.unary_unary_rpc_method_handler(
                     servicer.get,
-                    request_deserializer=country__pb2.CountryIdRequest.FromString,
-                    response_serializer=country__pb2.CountryResponse.SerializeToString,
+                    request_deserializer=state__pb2.StateIdRequest.FromString,
+                    response_serializer=state__pb2.StateResponse.SerializeToString,
             ),
             'save': grpc.unary_unary_rpc_method_handler(
                     servicer.save,
-                    request_deserializer=country__pb2.CountryNotIdRequest.FromString,
-                    response_serializer=country__pb2.CountryResponse.SerializeToString,
+                    request_deserializer=state__pb2.StateNotIdRequest.FromString,
+                    response_serializer=state__pb2.StateResponse.SerializeToString,
             ),
             'update': grpc.unary_unary_rpc_method_handler(
                     servicer.update,
-                    request_deserializer=country__pb2.CountryRequest.FromString,
-                    response_serializer=country__pb2.CountryResponse.SerializeToString,
+                    request_deserializer=state__pb2.StateRequest.FromString,
+                    response_serializer=state__pb2.StateResponse.SerializeToString,
             ),
             'delete': grpc.unary_unary_rpc_method_handler(
                     servicer.delete,
-                    request_deserializer=country__pb2.CountryIdRequest.FromString,
-                    response_serializer=country__pb2.CountryEmpty.SerializeToString,
+                    request_deserializer=state__pb2.StateIdRequest.FromString,
+                    response_serializer=state__pb2.StateEmpty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'country.Country', rpc_method_handlers)
+            'State', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Country(object):
+class State(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -138,9 +138,9 @@ class Country(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/country.Country/table',
-            country__pb2.CountryTableRequest.SerializeToString,
-            country__pb2.CountryTableResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/State/table',
+            state__pb2.StateTableRequest.SerializeToString,
+            state__pb2.StateTableResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -154,9 +154,9 @@ class Country(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/country.Country/get_all',
-            country__pb2.CountryEmpty.SerializeToString,
-            country__pb2.CountryMultipleResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/State/get_all',
+            state__pb2.StateEmpty.SerializeToString,
+            state__pb2.StateMultipleResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -170,9 +170,9 @@ class Country(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/country.Country/get',
-            country__pb2.CountryIdRequest.SerializeToString,
-            country__pb2.CountryResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/State/get',
+            state__pb2.StateIdRequest.SerializeToString,
+            state__pb2.StateResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -186,9 +186,9 @@ class Country(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/country.Country/save',
-            country__pb2.CountryNotIdRequest.SerializeToString,
-            country__pb2.CountryResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/State/save',
+            state__pb2.StateNotIdRequest.SerializeToString,
+            state__pb2.StateResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -202,9 +202,9 @@ class Country(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/country.Country/update',
-            country__pb2.CountryRequest.SerializeToString,
-            country__pb2.CountryResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/State/update',
+            state__pb2.StateRequest.SerializeToString,
+            state__pb2.StateResponse.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -218,8 +218,8 @@ class Country(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/country.Country/delete',
-            country__pb2.CountryIdRequest.SerializeToString,
-            country__pb2.CountryEmpty.FromString,
+        return grpc.experimental.unary_unary(request, target, '/State/delete',
+            state__pb2.StateIdRequest.SerializeToString,
+            state__pb2.StateEmpty.FromString,
             options, channel_credentials,
             call_credentials, compression, wait_for_ready, timeout, metadata)
