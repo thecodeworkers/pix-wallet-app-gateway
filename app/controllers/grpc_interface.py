@@ -1,11 +1,14 @@
 from ..protos import currency_pb2, currency_pb2_grpc, american_banks_pb2, american_banks_pb2_grpc, language_pb2_grpc, language_pb2
 from ..bootstrap import init_server
+from ..constants import RESOURCES_HOST, PROVIDERS_HOST
 
 resources_host = 'localhost:50051'
 providers_host = 'localhost:50052'
 american_banks_host = 'localhost:50053'
 resources_host = 'micro_resources:50051'
 providers_host = 'micro_providers:50052'
+resources_host = RESOURCES_HOST
+providers_host = PROVIDERS_HOST
 
 microservices = {
     'resources': {

@@ -9,7 +9,13 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY', '')
 SECURE_SERVER = os.getenv('SECURE_SERVER', 'True')
+
 HOST = os.getenv('HOST', '127.0.0.1')
 PORT = os.getenv('PORT', 5000)
+
 DEBUG = os.getenv('DEBUG', False)
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
+
+RESOURCES_HOST = os.getenv('RESOURCES_HOST', 'localhost:50051')
+PROVIDERS_HOST = os.getenv('RESOURCES_HOST', 'localhost:50052')
+PROVIDERS_HOST = os.getenv('RESOURCES_HOST', 'localhost:50053')
