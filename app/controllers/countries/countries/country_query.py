@@ -10,17 +10,6 @@ class CountryQuery(ObjectType):
 	country = Field(Country, id=String(required=True))
 	country_id = List(Country)
 
-	def resolve_create(root, info, data):
-		try:
-			request = sender.CountryNotIdRequest(data)
-			response = stub.save(request)
-			response = MessageToDict(response)
-
-			return response
-
-		except grpc.RpcError as error:
-			raise Exception(message_error(error))
-
 	def resolve_countries(root, info):
 		try:
 			request = sender.CountryEmpty()
