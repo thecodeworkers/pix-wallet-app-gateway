@@ -1,7 +1,6 @@
 from ..protos import currency_pb2, currency_pb2_grpc, american_banks_pb2, american_banks_pb2_grpc, language_pb2_grpc, language_pb2
 from ..bootstrap import init_server
-from ..constants import RESOURCES_HOST, PROVIDERS_HOST
-
+from ..constants import RESOURCES_HOST, PROVIDERS_HOST, BANKS_HOST
 
 resources_host = RESOURCES_HOST
 providers_host = PROVIDERS_HOST

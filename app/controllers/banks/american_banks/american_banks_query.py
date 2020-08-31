@@ -27,8 +27,6 @@ class AmericanBanksQuery(ObjectType):
         try:
             # print(id)
             request = sender.AmericanBankIdRequest(id=id)
-            print(request)
-            print('----------------------------------')
             response = stub.get(request)
             response = MessageToDict(response)
 
