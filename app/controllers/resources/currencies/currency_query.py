@@ -12,7 +12,9 @@ class CurrencyQuery(ObjectType):
     def resolve_currencies(root, info):
         try:
             request = sender.CurrencyEmpty()
-            response = stub.get_all(request)
+            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+
+            response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)
             
             if 'currency' in response:
