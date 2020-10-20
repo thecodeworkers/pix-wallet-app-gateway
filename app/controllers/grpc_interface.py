@@ -1,4 +1,4 @@
-from ..protos import currency_pb2, currency_pb2_grpc, language_pb2, language_pb2_grpc, country_pb2, country_pb2_grpc, american_banks_pb2, american_banks_pb2_grpc, language_pb2_grpc, language_pb2
+from ..protos import *
 from ..bootstrap import init_server
 from ..constants import RESOURCES_HOST, PROVIDERS_HOST, COUNTRIES_HOST, BANKS_HOST
 
@@ -33,6 +33,24 @@ microservices = {
             'american_banks': {
                 'stub': american_banks_pb2_grpc.AmericanBanksStub(init_server(banks_host)),
                 'sender': american_banks_pb2
+            }
+        }
+    },
+    'users': {
+        'services': {
+            'services': {
+                'bank_accounts': {
+                    # 'stub': bank_account_pb2_grpc,
+                    # 'sender': bank_account_pb2
+                },
+                'favorites': {
+                    # 'stub': favorite_pb2_grpc,
+                    # 'sender': favorite_pb2
+                },
+                'whitelists': {
+                    # 'stub': whitelist_pb2_grpc,
+                    # 'sender': whitelist_pb2
+                }
             }
         }
     }
