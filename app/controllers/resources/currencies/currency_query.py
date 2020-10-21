@@ -11,17 +11,19 @@ class CurrencyQuery(ObjectType):
 
     def resolve_currencies(root, info):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.CurrencyEmpty()
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 
             response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)
-            
+
             if 'currency' in response:
                 return response['currency']
-            
+
             return response
-        
+
         except grpc.RpcError as e:
             raise Exception(message_error(e))
 
@@ -33,8 +35,8 @@ class CurrencyQuery(ObjectType):
 
             if 'currency' in response:
                 return response['currency']
-        
+
             return response
-        
+
         except grpc.RpcError as e:
             raise Exception(message_error(e))

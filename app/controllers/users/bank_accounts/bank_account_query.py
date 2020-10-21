@@ -10,6 +10,8 @@ class BankAccountQuery(ObjectType):
 
     def resolve_bank_accounts(root, info):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.BankAccountEmpty()
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 

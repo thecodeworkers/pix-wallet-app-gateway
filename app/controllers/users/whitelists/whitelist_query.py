@@ -10,6 +10,8 @@ class WhitelistQuery(ObjectType):
 
     def resolve_whitelists(root, info):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.WhitelistEmpty()
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 

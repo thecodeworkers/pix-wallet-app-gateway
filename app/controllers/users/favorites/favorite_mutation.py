@@ -13,6 +13,8 @@ class CreateFavorite(Mutation):
 
     def mutate(self, info, favorite_data):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.FavoriteNotIdRequest(**favorite_data)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
             response = stub.save(request=request, metadata=metadata)
@@ -31,6 +33,8 @@ class UpdateFavorite(Mutation):
 
     def mutate(self, info, favorite_data):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.FavoriteRequest(**favorite_data)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
             response = stub.update(request=request, metadata=metadata)
@@ -49,6 +53,8 @@ class DeleteFavorite(Mutation):
 
     def mutate(self, info, id):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.FavoriteIdRequest(id=id)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 

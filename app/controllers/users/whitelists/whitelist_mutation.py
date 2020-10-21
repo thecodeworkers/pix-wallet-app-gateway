@@ -13,6 +13,8 @@ class CreateWhitelist(Mutation):
 
     def mutate(self, info, whitelist_data):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.WhitelistNotIdRequest(**whitelist_data)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
             response = stub.save(request=request, metadata=metadata)
@@ -31,6 +33,8 @@ class UpdateWhitelist(Mutation):
 
     def mutate(self, info, whitelist_data):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.WhitelistRequest(**whitelist_data)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
             response = stub.update(request=request, metadata=metadata)
@@ -49,6 +53,8 @@ class DeleteWhitelist(Mutation):
 
     def mutate(self, info, id):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.WhitelistIdRequest(id=id)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 

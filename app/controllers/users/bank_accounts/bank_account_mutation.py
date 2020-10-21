@@ -13,6 +13,8 @@ class CreateBankAccount(Mutation):
 
     def mutate(self, info, bank_account_data):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.BankAccountNotIdRequest(**bank_account_data)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
             response = stub.save(request=request, metadata=metadata)
@@ -31,6 +33,8 @@ class UpdateBankAccount(Mutation):
 
     def mutate(self, info, bank_account_data):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.BankAccountRequest(**bank_account_data)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
             response = stub.update(request=request, metadata=metadata)
@@ -49,6 +53,8 @@ class DeleteBankAccount(Mutation):
 
     def mutate(self, info, id):
         try:
+            auth_token = info.context.headers.get('Authorization')
+
             request = sender.BankAccountIdRequest(id=id)
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 
