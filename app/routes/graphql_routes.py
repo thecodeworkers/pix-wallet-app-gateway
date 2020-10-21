@@ -1,25 +1,30 @@
 from flask_graphql import GraphQLView
 from graphene import Schema
 from ..bootstrap import app
-from ..controllers import  CurrencyQuery, LanguageQuery, CountryQuery, AmericanBanksQuery
+from ..controllers import  *
 
 class AllQuerys(
     CurrencyQuery,
     LanguageQuery,
     CountryQuery,
-    AmericanBanksQuery
+    AmericanBanksQuery,
+    BankAccountQuery,
+    FavoriteQuery,
+    WhitelistQuery
 ):
     pass
 
 class AllMutations(
-    
+    BankAccountMutation,
+    FavoriteMutation,
+    WhitelistMutation
 ):
     pass
 
 
 schema = Schema(
-    query=AllQuerys, 
-    # mutation=AllMutations
+    query=AllQuerys,
+    mutation=AllMutations
 )
 
 
