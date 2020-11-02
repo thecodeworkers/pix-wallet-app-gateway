@@ -2,7 +2,7 @@ from graphene import ObjectType, Field, List, Mutation, String, Boolean
 from google.protobuf.json_format import MessageToDict
 from .bank_account_controller import sender, stub
 from ....types import BankAccount, BankAccountInput, BankAccountNotIdInput
-from ....utils import message_error
+from ....utils import message_error, error_log, info_log
 import grpc
 
 class CreateBankAccount(Mutation):
@@ -20,10 +20,15 @@ class CreateBankAccount(Mutation):
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
 
+            info_log(info.context.remote_addr, "Create Bank Account", "users_microservice", "CreateBankAccount")
             return CreateBankAccount(**response)
 
         except grpc.RpcError as e:
+            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
             raise Exception(message_error(e))
+        except Exception as e:
+            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            raise Exception(e.args[0])
 
 class UpdateBankAccount(Mutation):
     class Arguments:
@@ -40,10 +45,15 @@ class UpdateBankAccount(Mutation):
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
+            info_log(info.context.remote_addr, "Update Bank Account", "users_microservice", "UpdateBankAccount")
             return CreateBankAccount(**response)
 
         except grpc.RpcError as e:
+            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
             raise Exception(message_error(e))
+        except Exception as e:
+            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            raise Exception(e.args[0])
 
 class DeleteBankAccount(Mutation):
     class Arguments:
@@ -59,11 +69,16 @@ class DeleteBankAccount(Mutation):
             metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
 
             stub.delete(request=request, metadata=metadata)
-
+            
+            info_log(info.context.remote_addr, "Delete Bank Account", "users_microservice", "DeleteBankAccount")
             return DeleteBankAccount(ok=True)
 
         except grpc.RpcError as e:
+            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
             raise Exception(message_error(e))
+        except Exception as e:
+            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            raise Exception(e.args[0])
 
 class BankAccountMutation(ObjectType):
     create_bank_account = CreateBankAccount.Field()
