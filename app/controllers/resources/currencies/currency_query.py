@@ -26,11 +26,11 @@ class CurrencyQuery(ObjectType):
             return response
 
         except grpc.RpcError as e:
-			error_log(info.context.remote_addr, e.details(), "resources_microservice", type(e).__name__)
-			raise Exception(message_error(e))
+            error_log(info.context.remote_addr, e.details(), "resources_microservice", type(e).__name__)
+            raise Exception(message_error(e))
         except Exception as e:
-			error_log(info.context.remote_addr, e.args[0], "resources_microservice", type(e).__name__)
-			raise Exception(e.args[0])
+            error_log(info.context.remote_addr, e.args[0], "resources_microservice", type(e).__name__)
+            raise Exception(e.args[0])
 
     def resolve_currency(root, info, id):
         try:
@@ -45,8 +45,8 @@ class CurrencyQuery(ObjectType):
             return response
 
         except grpc.RpcError as e:
-			error_log(info.context.remote_addr, e.details(), "resources_microservice", type(e).__name__)
-			raise Exception(message_error(e))
+            error_log(info.context.remote_addr, e.details(), "resources_microservice", type(e).__name__)
+            raise Exception(message_error(e))
         except Exception as e:
-			error_log(info.context.remote_addr, e.args[0], "resources_microservice", type(e).__name__)
-			raise Exception(e.args[0])
+            error_log(info.context.remote_addr, e.args[0], "resources_microservice", type(e).__name__)
+            raise Exception(e.args[0])
