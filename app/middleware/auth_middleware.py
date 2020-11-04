@@ -7,9 +7,6 @@ class AuthMiddleware:
             headers = dict(info.context.headers)
             api_token = headers['Api-Key']
 
-            print('this should be api token')
-            print(api_token)
-
             verify_signature(api_token)
 
             return next(root, info, **args)

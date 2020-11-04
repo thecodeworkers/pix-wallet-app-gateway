@@ -14,6 +14,7 @@ from json import loads
 from ..models import Client
 from datetime import datetime
 from flask import request
+from .log_handler import error_log
 
 def generation_keys():
 
