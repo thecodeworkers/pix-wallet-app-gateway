@@ -14,7 +14,7 @@ class CurrencyQuery(ObjectType):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.CurrencyEmpty()
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8JUKRFfsWppmz7vX2IJhrXD1UJ8hzM')]
 
             response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)
@@ -34,8 +34,10 @@ class CurrencyQuery(ObjectType):
 
     def resolve_currency(root, info, id):
         try:
+            auth_token = info.context.headers.get('Authorization')
             request = sender.CurrencyIdRequest(id=id)
-            response = stub.get(request)
+            metadata = [('auth_token', '859ShQR2yhKJrLmSkGXa2OM6l1RMvm')]
+            response = stub.get(request=request, metadata=metadata)
             response = MessageToDict(response)
 
             info_log(info.context.remote_addr, "consult of one currency", "resources_microservice", "CurrencyQuery")

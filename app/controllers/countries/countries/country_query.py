@@ -12,8 +12,12 @@ class CountryQuery(ObjectType):
 
 	def resolve_countries(root, info):
 		try:
+			auth_token = info.context.headers.get('Authorization')
+
 			request = sender.CountryEmpty()
-			response = stub.get_all(request)
+			metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
+
+			response = stub.get_all(request=request, metadata=metadata)
 			response = MessageToDict(response)
 
 			info_log(info.context.remote_addr, "consult of countries", "countries_microservice", "CountryQuery")
@@ -26,13 +30,15 @@ class CountryQuery(ObjectType):
 			error_log(info.context.remote_addr, e.details(), "countries_microservice", type(e).__name__)
 			raise Exception(message_error(e))
 		except Exception as e:
-			error_log(info.context.remote_addr, e.args[0], "bcountries_microservice", type(e).__name__)
+			error_log(info.context.remote_addr, e.args[0], "countries_microservice", type(e).__name__)
 			raise Exception(e.args[0])
 
 	def resolve_country(root, info, id):
 		try:
+			auth_token = info.context.headers.get('Authorization')
+			metadata = [('auth_token', '01KiIMCPXzYBJo4oLJhvPvsE7HQ18T')]
 			request = sender.CountryIdRequest(id=id)
-			response = stub.get(request)
+			response = stub.get(request=request, metadata=metadata)
 			response = MessageToDict(response)
 
 			info_log(info.context.remote_addr, "consult of one country", "countries_microservice", "CountryQuery")

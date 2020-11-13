@@ -11,16 +11,18 @@ class AmericanBanksQuery(ObjectType):
 
     def resolve_american_banks(root, info):
         try:
+            auth_token = info.context.headers.get('Authorization')
             request = sender.AmericanBankEmpty()
-            response = stub.get_all(request)
+            metadata = [('auth_token', '859ShQR2yhKJrLmSkGXa2OM6l1RMvm')]
+            response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)
-            
+
             info_log(info.context.remote_addr, "Consult of american banks", "banks_microservice", "AmericanBankQuery")
             if 'american' in response:
                 return response['american']
-            
+
             return response
-        
+
         except grpc.RpcError as e:
             error_log(info.context.remote_addr, e.details(), "banks_microservice", type(e).__name__)
             raise Exception(message_error(e))
@@ -30,17 +32,18 @@ class AmericanBanksQuery(ObjectType):
 
     def resolve_american_bank(root, info, id):
         try:
-            # print(id)
+            auth_token = info.context.headers.get('Authorization')
             request = sender.AmericanBankIdRequest(id=id)
-            response = stub.get(request)
+            metadata = [('auth_token', '859ShQR2yhKJrLmSkGXa2OM6l1RMvm')]
+            response = stub.get(request=request, metadata=metadata)
             response = MessageToDict(response)
 
             info_log(info.context.remote_addr, "Consult of one american bank", "banks_microservice", "AmericanBankQuery")
             if 'american' in response:
                 return response['american']
-        
+
             return response
-        
+
         except grpc.RpcError as e:
             error_log(info.context.remote_addr, e.details(), "banks_microservice", type(e).__name__)
             raise Exception(message_error(e))

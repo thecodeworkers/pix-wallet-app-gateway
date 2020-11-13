@@ -16,10 +16,10 @@ class CreateWhitelist(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistNotIdRequest(**whitelist_data)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
-        
+
             info_log(info.context.remote_addr, "Create Whitelist", "users_microservice", "CreateWhitelist")
             return CreateWhitelist(**response)
 
@@ -41,7 +41,7 @@ class UpdateWhitelist(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistRequest(**whitelist_data)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -66,7 +66,7 @@ class DeleteWhitelist(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistIdRequest(id=id)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
 
             stub.delete(request=request, metadata=metadata)
 

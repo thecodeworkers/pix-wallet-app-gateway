@@ -42,7 +42,7 @@ def __generate_keys():
 
     if not os.path.isdir(os.path.dirname(__file__) + '/../keys'):
         os.mkdir(os.path.dirname(__file__) + '/../keys', 0o750)
-        
+
 
     with open(os.path.dirname(__file__) + '/../keys/private.pem', 'wb') as f:
         f.write(encrypt_private_key)

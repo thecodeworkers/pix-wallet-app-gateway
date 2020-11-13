@@ -13,7 +13,7 @@ class WhitelistQuery(ObjectType):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistEmpty()
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
 
             response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)

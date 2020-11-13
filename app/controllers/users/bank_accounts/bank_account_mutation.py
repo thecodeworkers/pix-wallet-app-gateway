@@ -16,7 +16,7 @@ class CreateBankAccount(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.BankAccountNotIdRequest(**bank_account_data)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -41,7 +41,7 @@ class UpdateBankAccount(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.BankAccountRequest(**bank_account_data)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -66,10 +66,10 @@ class DeleteBankAccount(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.BankAccountIdRequest(id=id)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
 
             stub.delete(request=request, metadata=metadata)
-            
+
             info_log(info.context.remote_addr, "Delete Bank Account", "users_microservice", "DeleteBankAccount")
             return DeleteBankAccount(ok=True)
 

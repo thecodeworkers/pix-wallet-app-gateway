@@ -16,7 +16,7 @@ class CreateFavorite(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.FavoriteNotIdRequest(**favorite_data)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -40,7 +40,7 @@ class UpdateFavorite(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.FavoriteRequest(**favorite_data)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -65,7 +65,7 @@ class DeleteFavorite(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.FavoriteIdRequest(id=id)
-            metadata = [('auth_token', '0j29BMYV64qF26vYNC4QFb6BHwF7kT')]
+            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
 
             stub.delete(request=request, metadata=metadata)
 
