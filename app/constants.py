@@ -16,8 +16,8 @@ PORT = os.getenv('PORT', 5000)
 DEBUG = os.getenv('DEBUG', False)
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'production')
 
-APP_NAME = os.getenv('APP_NAME', "WALLET_APP_GATEWAY")
-APP_KEY = os.getenv('APP_KEY', "")
+APP_NAME = os.getenv('APP_NAME', 'WALLET_APP_GATEWAY')
+APP_KEY = os.getenv('APP_KEY', '')
 
 DATABASE_NAME = os.getenv('DATABASE_NAME', 'pix_gateway')
 DATABASE_HOST = os.getenv('DATABASE_HOST', 'localhost')

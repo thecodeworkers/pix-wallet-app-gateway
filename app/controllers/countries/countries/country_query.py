@@ -20,17 +20,17 @@ class CountryQuery(ObjectType):
 			response = stub.get_all(request=request, metadata=metadata)
 			response = MessageToDict(response)
 
-			info_log(info.context.remote_addr, "consult of countries", "countries_microservice", "CountryQuery")
+			info_log(info.context.remote_addr, 'consult of countries', 'countries_microservice', 'CountryQuery')
 			if 'country' in response:
 				return response['country']
 
 			return response
 
 		except grpc.RpcError as e:
-			error_log(info.context.remote_addr, e.details(), "countries_microservice", type(e).__name__)
+			error_log(info.context.remote_addr, e.details(), 'countries_microservice', type(e).__name__)
 			raise Exception(message_error(e))
 		except Exception as e:
-			error_log(info.context.remote_addr, e.args[0], "countries_microservice", type(e).__name__)
+			error_log(info.context.remote_addr, e.args[0], 'countries_microservice', type(e).__name__)
 			raise Exception(e.args[0])
 
 	def resolve_country(root, info, id):
@@ -41,14 +41,14 @@ class CountryQuery(ObjectType):
 			response = stub.get(request=request, metadata=metadata)
 			response = MessageToDict(response)
 
-			info_log(info.context.remote_addr, "consult of one country", "countries_microservice", "CountryQuery")
+			info_log(info.context.remote_addr, 'consult of one country', 'countries_microservice', 'CountryQuery')
 			if 'country' in response:
 				return response['country']
 
 			return response
 		except grpc.RpcError as e:
-			error_log(info.context.remote_addr, e.details(), "countries_microservice", type(e).__name__)
+			error_log(info.context.remote_addr, e.details(), 'countries_microservice', type(e).__name__)
 			raise Exception(message_error(e))
 		except Exception as e:
-			error_log(info.context.remote_addr, e.args[0], "countries_microservice", type(e).__name__)
+			error_log(info.context.remote_addr, e.args[0], 'countries_microservice', type(e).__name__)
 			raise Exception(e.args[0])

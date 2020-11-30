@@ -20,14 +20,14 @@ class CreateBankAccount(Mutation):
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "Create Bank Account", "users_microservice", "CreateBankAccount")
+            info_log(info.context.remote_addr, 'Create Bank Account', 'users_microservice', 'CreateBankAccount')
             return CreateBankAccount(**response)
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'users_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'users_microservice', type(e).__name__)
             raise Exception(e.args[0])
 
 class UpdateBankAccount(Mutation):
@@ -45,14 +45,14 @@ class UpdateBankAccount(Mutation):
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "Update Bank Account", "users_microservice", "UpdateBankAccount")
+            info_log(info.context.remote_addr, 'Update Bank Account', 'users_microservice', 'UpdateBankAccount')
             return CreateBankAccount(**response)
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'users_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'users_microservice', type(e).__name__)
             raise Exception(e.args[0])
 
 class DeleteBankAccount(Mutation):
@@ -70,14 +70,14 @@ class DeleteBankAccount(Mutation):
 
             stub.delete(request=request, metadata=metadata)
 
-            info_log(info.context.remote_addr, "Delete Bank Account", "users_microservice", "DeleteBankAccount")
+            info_log(info.context.remote_addr, 'Delete Bank Account', 'users_microservice', 'DeleteBankAccount')
             return DeleteBankAccount(ok=True)
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'users_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'users_microservice', type(e).__name__)
             raise Exception(e.args[0])
 
 class BankAccountMutation(ObjectType):

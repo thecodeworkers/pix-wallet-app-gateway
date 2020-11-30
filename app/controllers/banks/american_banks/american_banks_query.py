@@ -17,17 +17,17 @@ class AmericanBanksQuery(ObjectType):
             response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "Consult of american banks", "banks_microservice", "AmericanBankQuery")
+            info_log(info.context.remote_addr, 'Consult of american banks', 'banks_microservice', 'AmericanBankQuery')
             if 'american' in response:
                 return response['american']
 
             return response
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "banks_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'banks_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "banks_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'banks_microservice', type(e).__name__)
             raise Exception(e.args[0])
 
     def resolve_american_bank(root, info, id):
@@ -38,15 +38,15 @@ class AmericanBanksQuery(ObjectType):
             response = stub.get(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "Consult of one american bank", "banks_microservice", "AmericanBankQuery")
+            info_log(info.context.remote_addr, 'Consult of one american bank', 'banks_microservice', 'AmericanBankQuery')
             if 'american' in response:
                 return response['american']
 
             return response
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "banks_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'banks_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "banks_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'banks_microservice', type(e).__name__)
             raise Exception(e.args[0])

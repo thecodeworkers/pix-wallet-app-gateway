@@ -16,15 +16,15 @@ class LanguageQuery(ObjectType):
             response = stub.get_all(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "consult of languages", "resources_microservice", "LanguageQuery")
+            info_log(info.context.remote_addr, 'consult of languages', 'resources_microservice', 'LanguageQuery')
             if 'language' in response:
                 return response['language']
 
             return response
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "resources_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'resources_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "resources_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'resources_microservice', type(e).__name__)
             raise Exception(e.args[0])

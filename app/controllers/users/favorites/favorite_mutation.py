@@ -20,14 +20,14 @@ class CreateFavorite(Mutation):
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "Create Favorite", "users_microservice", "CreateFavorite")
+            info_log(info.context.remote_addr, 'Create Favorite', 'users_microservice', 'CreateFavorite')
             return CreateFavorite(**response)
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'users_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'users_microservice', type(e).__name__)
             raise Exception(e.args[0])
 class UpdateFavorite(Mutation):
     class Arguments:
@@ -44,14 +44,14 @@ class UpdateFavorite(Mutation):
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
-            info_log(info.context.remote_addr, "Update Favorite", "users_microservice", "UpdateFavorite")
+            info_log(info.context.remote_addr, 'Update Favorite', 'users_microservice', 'UpdateFavorite')
             return CreateFavorite(**response)
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'users_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'users_microservice', type(e).__name__)
             raise Exception(e.args[0])
 
 class DeleteFavorite(Mutation):
@@ -69,14 +69,14 @@ class DeleteFavorite(Mutation):
 
             stub.delete(request=request, metadata=metadata)
 
-            info_log(info.context.remote_addr, "Delete Favorite", "users_microservice", "DeleteFavorite")
+            info_log(info.context.remote_addr, 'Delete Favorite', 'users_microservice', 'DeleteFavorite')
             return DeleteFavorite(ok=True)
 
         except grpc.RpcError as e:
-            error_log(info.context.remote_addr, e.details(), "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.details(), 'users_microservice', type(e).__name__)
             raise Exception(message_error(e))
         except Exception as e:
-            error_log(info.context.remote_addr, e.args[0], "users_microservice", type(e).__name__)
+            error_log(info.context.remote_addr, e.args[0], 'users_microservice', type(e).__name__)
             raise Exception(e.args[0])
 
 class FavoriteMutation(ObjectType):
