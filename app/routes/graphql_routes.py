@@ -2,6 +2,7 @@ from flask_graphql import GraphQLView
 from graphene import Schema
 from ..bootstrap import app
 from ..controllers import  *
+from ..middleware import AuthMiddleware
 
 class AllQuerys(
     CurrencyQuery,
@@ -31,5 +32,6 @@ def graphql_routes():
     app.add_url_rule('/graphql/', view_func=GraphQLView.as_view(
         'Pix Wallet',
         schema=schema,
-        graphiql=True
+        graphiql=True,
+        middleware=[AuthMiddleware]
     ))
