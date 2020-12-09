@@ -9,6 +9,7 @@ def welcome():
 
 @app.errorhandler(404)
 def page_not_found(error):
+    print(error)
     return { 'result': 'not_found' }, 404
 
 @app.errorhandler(Exception)
