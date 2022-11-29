@@ -16,7 +16,7 @@ class CreateWhitelist(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistNotIdRequest(**whitelist_data)
-            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
+            metadata = [('auth_token', 'oO85tpozsiVo6u0vukCufS4cp4ygmt')]
             response = stub.save(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -41,7 +41,7 @@ class UpdateWhitelist(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistRequest(**whitelist_data)
-            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
+            metadata = [('auth_token', 'oO85tpozsiVo6u0vukCufS4cp4ygmt')]
             response = stub.update(request=request, metadata=metadata)
             response = MessageToDict(response)
 
@@ -66,7 +66,7 @@ class DeleteWhitelist(Mutation):
             auth_token = info.context.headers.get('Authorization')
 
             request = sender.WhitelistIdRequest(id=id)
-            metadata = [('auth_token', '8wCxHcpGA0Q0QewGDOCsMKfbtnXMYb')]
+            metadata = [('auth_token', 'oO85tpozsiVo6u0vukCufS4cp4ygmt')]
 
             stub.delete(request=request, metadata=metadata)
 

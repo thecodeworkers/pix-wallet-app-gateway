@@ -1,5 +1,5 @@
-from .currency import Currency
-from .language import Language
+from .currency import Currency, CurrencyTable
+from .language import Language, LanguageTable
 from .country import Country
 from .american_banks import AmericanBanks
 from .bank_account import BankAccount, BankAccountInput, BankAccountNotIdInput
